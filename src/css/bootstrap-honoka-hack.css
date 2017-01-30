@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.glyphicon.no-thank-yu,
+.glyphicon.navbar,
+.glyphicon.btn,
+.glyphicon.form-control,
+.glyphicon.input-gruop,
+.glyphicon.breadcrumb,
+.glyphicon.nav-tabs,
+.glyphicon.nav-pills,
+.glyphicon.panel-title,
+.glyphicon.list-group,
+.glyphicon.pagination,
+.glyphicon.pager,
+.glyphicon.alert,
+.glyphicon.label,
+.glyphicon.badge,
+.glyphicon.panel-heading,
+.glyphicon.lead,
+.glyphicon.tooltip,
+.glyphicon.popover {
+	font-family: 'Glyphicons Halflings';
+}

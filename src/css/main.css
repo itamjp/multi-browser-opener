@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+* {
+    position:       relative;
+    height:         100%;
+    width:          100%;
+    top:            0;
+    bottom:         0;
+    left:           0;
+    right:          0;
+    margin:         0;
+    padding:        0;
+    border:         0;
+    overflow:       visible;
+}
+.debug { outline: #00c000 4px dashed; }
+
+#bg {
+    overflow:       hidden;
+}
+
+.menu #header-bg, #toolbar-bg, #accounts-bg, #footer-bg {
+    position:       absolute;
+    bottom:         auto;
+    background:     #ffffff;
+}
+.menu #header-bg   { z-index: 10; top:  0px; height: 40px; bottom: auto; }
+.menu #toolbar-bg  { z-index: 10; top: 40px; height: 40px; bottom: auto; }
+.menu #footer-bg   { z-index: 10; top: auto; height: 40px; bottom:  0px; }
+.menu #accounts-bg { z-index:  0; top:  0px; height: 100%; bottom:  0px; }
+.menu #accounts-bg {
+    border-top:       80px solid #ffffff;
+    border-bottom:    40px solid #ffffff;
+    box-sizing:       border-box;
+}
+
+#zzzwebview-bg {
+    position:         absolute;
+    top:              40px;
+    height:           100%;
+    bottom:           0;
+    border-bottom:    40px solid white;
+    box-sizing:       border-box;
+}
+zzzwebview {
+    position:         absolute;
+    top:              0px;
+    bottom:           0;
+    height:           100%;
+    right:            0;
+    left:             0;
+    width:            100%;
+    margin:           0;
+}
+#zzztoolbar {
+    position: absolute;
+    top:      0;
+    bottom:   auto;
+    height:   0;
+    right:    0;
+    left:     0;
+    width:    auto;
+    margin:   0;
+    background: white;
+    background: red;
+}

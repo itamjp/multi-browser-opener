@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Multi Browser Opener</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka-hack.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-customize.css">
+	<link rel="stylesheet" type="text/css" href="./css/webview.css">
+	<script type="text/javascript"> jQuery = $ = require('./js/jquery-2.1.4.min'); </script>
+</head>
+<body class="body-webview gray-lighter">
+	<div id="bg" class="webview container">
+		<div id="header-bg">
+			<h3 id="header"></h3>
+			<div id="header-icons-bg">
+				<ul id="header-icons-left" class="btn-group pull-left">
+					<li class="pull-left"><button class="btn btn-default btn-xs glyphicon glyphicon-menu-hamburger dropdown-togglez" aria-hidden="true" id="popupMenu"></button></li>
+					<li class="pull-left"><button class="btn btn-default btn-xs glyphicon glyphicon-arrow-left" aria-hidden="true" id="goBack" disabled="true"></button></li>
+					<li class="pull-left"><button class="btn btn-default btn-xs glyphicon glyphicon-arrow-right" aria-hidden="true" id="goForward" disabled="true"></button></li>
+					<li class="pull-left"><button class="btn btn-default btn-xs glyphicon glyphicon-repeat " aria-hidden="true" id="reload"></button></li>
+					<li id="url-bg">
+						<img id="favicon" src="./img/spinner.gif">
+						<span href="javascript:void(0)" id="search"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+						<input type="text" class="form-control" id="url" placeholder="Multi Browser Opener" value="">
+						<div id="heart"><span class="glyphicon glyphicon-heart " aria-hidden="true"></span></div>
+						<img id="loading" src="./img/spinner.gif">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="holder"></div>
+		<div id="footer-bg">
+		</div>
+	</div>
+	<div id="customStyle" style="display: none;">
+		.gbqfif, .gbqfsf {
+			font-family: Arial,Meiryo,sans-serif !important;
+		}
+		input, textarea, select {
+			font-family: Arial,Meiryo,sans-serif !important;
+		}
+	</div>
+	<script type="text/javascript">
+		// 初期処理
+		require(__dirname + '/libs/$IF.js');
+		$IF.get('./libs/Log.js');
+		Log.info('Open each window (webview container). [pid=' + process.pid + ']');
+		// require('./lib/MemoryUsage').init('menu'); @todo
+
+		// onready
+		$(function(){
+			$IF.get('./libs/WebView.js').setup({
+				jQuery:   $,
+				window:   window,
+				document: document,
+				location: location,
+				winid:    location.search.substr(1),
+				holder:   '#holder',
+			});
+/*
+			const winid   = location.search.substr(1);
+			$('body').attr('data-window-id', winid);
+			const name    = $IF.getMain('./libs/EachWindow.js').getNameById(winid);
+			$('body').attr('data-account-name', name);
+			// アカウント情報はグローバルスコープに保持することにする
+			Object.defineProperty(global, 'data', {
+				value:          $IF.getMain('./libs/Config.js').getAccountInfo(name),
+				writable:       false,  // 代入不可
+				enumerable:     true,
+				configurable:   true,
+			});
+			// webviewを生成
+			$('#holder').html(`
+<webview
+	id="webview"
+	src="./loading.html"
+	autosize="on"
+	nodeintegration="off"
+	plugins="off"
+	partition="persist:${data.partition}"
+	webpreferences="javascript=on, webSecurity=off, defaultEncoding=UTF-8"
+></webview>
+`);
+			// webviewを生成して読み込み
+			const webview = $('#webview');
+			webview.attr('src', data.svcurl);
+
+// webview.addEventListener('did-start-loading',        _handleStartLoadingEvent);
+// webview.addEventListener('did-stop-loading',         _handleStopLoadingEvent);
+// webview.addEventListener('did-finish-load',          _handleFinishLoadEvent);
+        webview.addEventListener('did-get-response-details', _handleGetResponseDetailsEvent);
+        webview.addEventListener('new-window',               _handleNewWindowEvent);
+        webview.addEventListener('page-title-set',           _handlePageTitleSetEvent);
+        webview.addEventListener('page-favicon-updated',     _handlePageFaviconUpdatedEvent);
+*/
+
+/*
+document.createElement('webview');
+			webview.id    = 'webview';
+			webview.autosize = 'on';
+			webview.partition = 'persist:' + data.partition;
+			webview.nodeintegration = false;
+			webview.src             = './loading.html';
+        webview.id                 = 'webview';
+        var instance               = document.createElement('webview');
+        instance.id                = 'webview';
+        instance.autosize          = 'on';
+        instance.partition         = 'persist:' + account.partition;
+        instance.nodeintegration   = false;
+        instance.preload           = './lib/WebViewLoader.js'
+        instance.src               = './loading.html';
+        elements.holder.appendChild(instance);
+        webview                    = {
+            id:         params.webview,
+            instance:   instance,
+            process:    0,
+        };
+*/
+
+//			Log.info(data);
+			/*
+			alert('will call WebView.js at here.\n' + __HERE__ );
+			$IF.get('./libs/WebView.js').create({
+				window:   window,
+				document: document,
+			});
+			*/
+			/*
+			var WebView = require('./lib/WebView');
+			WebView.init({
+				window:   window,
+				document: document,
+			});
+			*/
+		});
+	</script>
+	<script type="text/javascript" src="./js/bootstrap-honoka.min.js"></script>
+</body>
+</html>

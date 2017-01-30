@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color:     #ffffe0;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+	background-color:     #f1f1f1;
+}
+.table-striped > tbody > tr:hover {
+	background-color:     #ffffc6;
+}
+.table-bordered {
+	border-width:         2px 1px;
+}
+.dl-horizontal dt {
+	float:                left;
+	width:                160px;
+	overflow:             hidden;
+	clear:                left;
+	text-align:           right;
+	text-overflow:        ellipsis;
+	white-space:          nowrap;
+}
+.dl-horizontal dd {
+	margin-left:          180px;
+}

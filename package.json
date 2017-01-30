@@ -1,0 +1,24 @@
+{
+  "name": "multi-browser-opener",
+  "version": "0.1.0",
+  "description": "multiple browser opener",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./src"
+  },
+  "keywords": [],
+  "author": "Masaki Hojo <info@ifollow.co.jp>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/itamjp/multi-browser-opener.git"
+  },
+  "devDependencies": {
+    "npm-run-all": "^1.2.0"
+  },
+  "dependencies": {
+    "electron-about-window": "^1.6.1",
+    "electron-in-page-search": "^1.2.3"
+  },
+  "preferGlobal": true
+}

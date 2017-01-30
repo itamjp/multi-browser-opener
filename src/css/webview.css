@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+html, body {
+	position:     relative;
+	height:       100%;
+	width:        100%;
+	margin:       0;
+	padding:      0;
+}
+.body-webview {
+	position:     relative;
+	overflow:     inherit;
+	height:       100%;
+	width:        100%;
+	background:   #ffffff;
+	margin:       0px;
+	padding:      0px;
+}
+.body-webview #bg {
+	position:     relative;
+	height:       100%;
+	width:        100%;
+	background:   transparent;
+	margin:       0px;
+	padding:      0px;
+}
+.body-webview #header-bg {
+	position:     fixed;
+	top:          0px;
+	bottom:       auto;
+	left:         0px;
+	right:        0px;
+	height:       36px;
+	width:        auto;
+	box-sizing:   border-box;
+	border-color: #aaaaaa;
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	padding:      10px 15px 5px 15px;
+	margin:       0;
+	z-index:      100;
+	background:   #f1f1f1;
+}
+.body-webview #header-icons-bg {
+	position:     absolute;
+	top:          0;
+	left:         0;
+	width:        100%;
+	height:       100%;
+	margin:       0;
+	padding:      0;
+}
+.body-webview #header-icons-left {
+	position:     absolute;
+	list-style:   none;
+	width:        auto;
+	left:         0px;
+	right:        6px;
+	margin:       0;
+	padding:      0;
+}
+.body-webview #header-icons-bg button {
+	border-radius: 2px;
+	line-height:  20px;
+}
+.body-webview #header-icons-bg li {
+	margin:       4px 1px;
+}
+.body-webview #header-icons-bg #header-icons-left li:first-child {
+	margin-left:  6px;
+}
+.body-webview #header-icons-bg #header-icons-right li:last-child {
+	margin-right: 6px;
+}
+.body-webview #url-bg {
+	position:     absolute;
+	left:         112px;
+	right:        0px;
+	width:        auto;
+}
+.body-webview #url {
+	width:        100%;
+	height:       24px;
+	line-height:  22px;
+	margin:       2px 0px;
+	padding:      1px 4px;
+	background:   #ffffff;
+	text-indent:  20px;
+	color:        #666666;
+}
+.body-webview #url:active, .body-webview #url:focus  {
+	color:        #000000;
+}
+.body-webview #favicon {
+	position:     absolute;
+	display:      inline-block;
+	top:          0px;
+	left:         0px;
+	width:        20px;
+	height:       20px;
+	margin:       4px;
+	border:       2px solid #ffffff;
+	box-sizing:   border-box;
+	text-align:   center;
+	background:   #ffffff;
+}
+.body-webview #search {
+	position:     absolute;
+	display:      none;
+	top:          0px;
+	left:         0px;
+	width:        20px;
+	height:       20px;
+	margin:       4px;
+	border:       0px;
+	box-sizing:   border-box;
+	text-align:   center;
+	background:   #ffffff;
+	color:        #0000ff;
+}
+.body-webview #loading {
+	position:     absolute;
+	display:      inline-block;
+	top:          0px;
+	right:        1px;
+	width:        16px;
+	height:       16px;
+	margin:       6px;
+	background:   #ffffff;
+	color:        #000000;
+}
+.body-webview #heart {
+	position:     absolute;
+	display:      inline-block;
+	top:          0px;
+	right:        0px;
+	width:        20px;
+	height:       20px;
+	margin:       4px;
+	background:   #ffffff;
+	color:        #ffffff;
+	-webkit-text-stroke: 1px #8c0c0c;
+}
+.body-webview #header {
+	position:     absolute;
+	top:          0;
+	left:         0;
+	width:        100%;
+	height:       100%;
+	margin:       0px 0px 0px 0px;
+	padding:      0px 0px 0px 100px;
+	line-height:  36px;
+}
+.body-webview #holder {
+	position:     relative;
+	height:       100%;
+	width:        100%;
+	background:   transparent;
+	margin:       0px;
+	padding:      0px;
+}
+.body-webview #webview {
+	position:     absolute;
+	top:          36px;
+	bottom:       0px;
+	height:       auto;
+	left:         0px;
+	right:        0px;
+	width:        auto;
+	margin:       0px;
+	padding:      0px;
+}
+.body-webview #footer-bg {
+	display: none;
+	position:     fixed;
+	top:          auto;
+	bottom:       0px;
+	left:         0px;
+	right:        0px;
+	height:       40px;
+	width:        auto;
+	box-sizing:   border-box;
+	border-color: #c1ebfc;
+	border-style: solid;
+	border-width: 1px 0 0 0;
+	padding:      5px 15px 10px 15px;
+	margin:       0;
+	z-index:      100;
+	background:   #e3f2fd;
+}

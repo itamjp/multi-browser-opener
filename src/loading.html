@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Now loading ...</title>
+	<style type="text/css">
+		html, body, #bg {
+			position:     relative;
+			width:        100%;
+			height:       100%;
+			overflow:     hidden;
+			margin:       0;
+			padding:      0;
+		}
+		#text {
+			word-wrap:    break-word;
+			word-break:   break-all;
+			font-size:    24px;
+			padding:      32px;
+			line-height:  32px;
+		}
+		#loading {
+			position:     absolute;
+			top:          50%;
+			left:         50%;
+			width:        16px;
+			height:       16px;
+			margin:       -8px;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg" class="loading container">
+		<div id="text">Now loading . . . <span id="dots"></span></div>
+		<input type="text">
+		<a href="blank.html">blank.html</a>
+		<a href="blank.html" target="_blank">blank.html [new win]</a>
+		<img id="loading" src="./img/spinner.gif">
+	</div>
+	<script type="text/javascript">
+		setInterval(function(){
+			var dots         = document.getElementById('dots');
+			dots.textContent = dots.textContent + '. ';
+		}, 1000);
+	</script>
+</body>
+</html>
