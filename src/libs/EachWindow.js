@@ -342,6 +342,7 @@ Log.info(__HERE__);
             canClose:    false,
 //             menu:        menu,
             pos:         pos,
+            webview:     -1,
         };
         Stored[name]      = each;
         WindowIds[win.id] = name;
