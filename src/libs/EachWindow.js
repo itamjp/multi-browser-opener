@@ -364,7 +364,7 @@ Log.info(__HERE__);
             // 無ければ抜ける
             return false;
         }
-        Stored[name].window.canClose = false;
+        Stored[name].canClose = true;
         Stored[name].window.close();
         return true;
     };
@@ -457,7 +457,7 @@ Log.info(__HERE__);
                 _savePosition(name, Stored[name].window.getBounds(), 'normal');
             }
         }
-        Stored[name].window.canClose = true;
+        Stored[name].canClose = true;
         Stored[name].window.destroy();
         // メモリ使用量を解放 → 保存はWebView::_handleInitWebContentsで行う
         // MemoryUsage.clear('each:' + each.name);
