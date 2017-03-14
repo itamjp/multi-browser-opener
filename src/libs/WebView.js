@@ -157,6 +157,7 @@ module.exports = new (function WebView() {
         if ( style !== '' ) {
             webview.insertCSS(style);
         }
+        EachWindow.setWebviewId(account.name, webview.getWebContents().id);
 //         _requestUpdateWebViewPid();
         Log.info('Open url:', webview.getURL());
         return true;
