@@ -334,7 +334,7 @@ Log.info(__HERE__);
 //                 MenuBuilder.getAppEdit(),
 //             ]);
 //             MenuBuilder.updateCanGoBack(menu, false, false);
-//             win.setMenu(menu);
+        win.setMenu(null);
         const each        = {
             name:        name,
             id:          win.id,
