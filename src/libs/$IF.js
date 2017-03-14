@@ -36,6 +36,9 @@ module.exports = new (function $IF() {
         CLOSE:      './img/icon-stop-16.png',
         QUIT:       './img/icon-switch-16.png',
 
+        HOME:       './img/icon-home-16.png',
+        PRINTER:    './img/icon-printer-16.png',
+
         CUT:        './img/icon-cut-16.png',
         COPY:       './img/icon-copy-16.png',
         PASTE:      './img/icon-paste-16.png',
