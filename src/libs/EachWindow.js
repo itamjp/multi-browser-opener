@@ -484,7 +484,7 @@ Log.info(__HERE__);
             // 無ければ抜ける
             return false;
         }
-        Stored[name].window.setTitle('' + title);;
+        Stored[name].window.setTitle('' + title);
         return true;
     };
 
