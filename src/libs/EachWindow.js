@@ -683,7 +683,8 @@ let aaaa_ = function(){
                       serif:            'MS PMincho',
                       sansSerif:        'Meiryo UI',
                       monospace:        'MS Gothic'
-                    }
+                    },
+                    defaultEncoding:    'UTF-8',
                 },
             });
             var isMaximized = false;

@@ -168,7 +168,8 @@ module.exports = new (function MenuWindow() {
                   serif:            'MS PMincho',
                   sansSerif:        'Meiryo UI',
                   monospace:        'MS Gothic'
-                }
+                },
+                defaultEncoding:    'UTF-8',
             },
         });
         Window.on('minimize', _handleClose);
