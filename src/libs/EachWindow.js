@@ -351,6 +351,24 @@ Log.info(__HERE__);
     };
 
     /**
+     * webviewのidをセットする
+     *
+     * @method
+     * @param   {String}    name
+     * @param   {Number}    webviewid
+     * @return  {Boolean}   true
+     * @public
+     */
+    self.setWebviewId = function setWebviewId(name, id) {
+        if ( ( name in Stored ) === false ) {
+            // 無ければ抜ける
+            return false;
+        }
+        Stored[name].webview = id || -1;
+        return true;
+    };
+
+    /**
      * ウィンドウを閉じる処理
      *
      * @type    {Function}
