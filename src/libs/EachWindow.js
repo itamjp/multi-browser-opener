@@ -343,6 +343,7 @@ Log.info(__HERE__);
 //             menu:        menu,
             pos:         pos,
             webview:     -1,
+            home:        conf.svcurl,
         };
         Stored[name]      = each;
         WindowIds[win.id] = name;
@@ -504,6 +505,268 @@ Log.info(__HERE__);
             return false;
         }
         Stored[name].window.setTitle('' + title);
+        return true;
+    };
+
+    /**
+     * ポップアップメニューを表示する
+     *
+     * @method
+     * @param   {String}    name
+     * @param   {String}    x
+     * @param   {String}    y
+     * @param   {Boolean}   visible
+     * @return  {Boolean}   true
+     * @public
+     */
+    self.popup = function popup(name, x, y, visible) {
+        if ( ( name in Stored ) === false ) {
+            // 無ければ抜ける
+            return false;
+        }
+        const items = [];
+        items.push({
+            icon:           ICONS.HOME,
+            label:          'ホーム',
+            click:          _goHome,
+        });
+        if ( false ) {
+        items.push({ type: 'separator' });
+        items.push({
+            icon:           ICONS.PRINTER,
+            label:          '印刷...',
+            click:          _print,
+        });
+        }
+        items.push({ type: 'separator' });
+        items.push({
+            icon:           ICONS.PROPERTY,
+            label:          'このウィンドウの設定を変更する ...',
+            click:          _configure,
+        });
+        items.push({
+            icon:           ICONS.DEBUG,
+            label:          'Developer Toolsを開く ...',
+            click:          _openDevTools,
+            accelerator:    'Shift+CmdOrCtrl+I',
+            visible:        visible || false,
+        });
+        items.push({
+            icon:           ICONS.DEBUG,
+            label:          'Developer Toolsを開く (外枠) ...',
+            click:          _openDevToolsFrame,
+            visible:        visible || false,
+        });
+        items.push({
+            icon:           ICONS.CLOSE,
+            label:          'このウィンドウを閉じる',
+            click:          _hideWindow,
+            accelerator:    'CmdOrCtrl+W',
+        });
+        items.push({
+            icon:           ICONS.CLOSE,
+            label:          'このウィンドウを閉じてメモリ開放',
+            click:          _closeWindow,
+            accelerator:    'Shift+CmdOrCtrl+W',
+        });
+        items.push({ type: 'separator' });
+        items.push({
+            icon:           ICONS.MENU,
+            label:          'メニューウィンドウを開く ...',
+            click:          _showMenuWindow,
+        });
+        items.push({
+            icon:           ICONS.ABOUT,
+            label:          'このアプリについて ...',
+            click:          _showAboutWindow,
+        });
+        items.push({ type: 'separator' });
+        items.push({
+            icon:           ICONS.QUIT,
+            label:          'アプリケーションを終了する',
+            click:          _quitApp,
+        });
+        const menu  = Electron.Menu.buildFromTemplate(items);
+        if ( x > 0 && y > 0 ) {
+            menu.popup(Stored[name].window, x, y);
+        } else {
+            menu.popup(Stored[name].window);
+        }
+        return true;
+    };
+
+    /**
+     * 設定する
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _configure = function _configure(menuItem, browserWindow, event) {
+// ★★★★ @todo
+        alert([
+            __HERE__,
+            "item.label:" + (menuItem||{}).label,
+            "item.id:"    + (menuItem||{}).id,
+            "win.id:"     + (browserWindow||{}).id,
+        ].join('\n'));
+        return true;
+    };
+
+    /**
+     * devtoolsを表示する
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _openDevTools = function _openDevTools(menuItem, browserWindow, event) {
+        const each = Stored[WindowIds[browserWindow.id]] || null;
+        if ( each === null ) {
+            return false;
+        }
+        Electron.webContents.fromId(each.webview).openDevTools();
+        return true;
+    };
+
+    /**
+     * devtoolsを表示する (外枠)
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _openDevToolsFrame = function _openDevToolsFrame(menuItem, browserWindow, event) {
+        browserWindow.webContents.openDevTools();
+        return true;
+    };
+
+    /**
+     * 印刷ダイアログを開く
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _print = function _print(menuItem, browserWindow, event) {
+        const each = Stored[WindowIds[browserWindow.id]] || null;
+        if ( each === null ) {
+            return false;
+        }
+        Electron.webContents.fromId(each.webview).printToPDF();
+        return true;
+    };
+
+    /**
+     * ホームへ移動する
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @public
+     */
+    const _goHome = function _goHome(menuItem, browserWindow, event) {
+        const each = Stored[WindowIds[browserWindow.id]] || null;
+        if ( each === null ) {
+            return false;
+        }
+        Electron.webContents.fromId(each.webview).loadURL(each.home);
+        return true;
+    };
+
+    /**
+     * このウィンドウを閉じる
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _hideWindow = function _hideWindow(menuItem, browserWindow, event) {
+        const each = Stored[WindowIds[browserWindow.id]] || null;
+        if ( each === null ) {
+            return false;
+        }
+        return self.hide(each.name);
+    };
+
+    /**
+     * このウィンドウを閉じる
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _closeWindow = function _closeWindow(menuItem, browserWindow, event) {
+        const each = Stored[WindowIds[browserWindow.id]] || null;
+        if ( each === null ) {
+            return false;
+        }
+        return self.destroy(each.name);
+    };
+
+    /**
+     * メニューウィンドウを開く
+     *
+     * @type    {Function}
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _showMenuWindow = function _showMenuWindow(menuItem, browserWindow, event) {
+        $IF.get('./libs/MenuWindow.js').show();
+        return true;
+    };
+
+    /**
+     * アバウトウィンドウを開く
+     *
+     * @type    {Function}
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _showAboutWindow = function _showAboutWindow(menuItem, browserWindow, event) {
+        $IF.get('./libs/AboutWindow.js').show();
+        return true;
+    };
+
+    /**
+     * 終了
+     *
+     * @type    {Function}
+     * @method
+     * @return  {Boolean}   true
+     * @private
+     */
+    const _quitApp = function _quitApp(menuItem, browserWindow, event) {
+Log.info(__HERE__, Electron.remote);
+        $IF.quit();
         return true;
     };
 
