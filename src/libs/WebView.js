@@ -284,6 +284,20 @@ module.exports = new (function WebView() {
         return true;
     };
 
+    /**
+     * ポップアップメニューを表示する
+     *
+     * @method
+     * @param   {Event}     event
+     * @return  {Boolean}   true
+     * @private
+     */
+    const _popupMenu = function _popupMenu(event){
+        const rect = event.target.getBoundingClientRect();
+        EachWindow.popup(account.name, rect.left, rect.top + rect.height + 2, event.ctrlKey||false);
+        return true;
+    };
+
     // -------------------------------------------------------------------------
     /**
      * ウィンドウ名を保持する
@@ -294,11 +308,11 @@ module.exports = new (function WebView() {
      * @public
      */
     self.setup = function setup(options) {
-        options  = options||{};
-        $        = options.jQuery   || $ ;
-        window   = options.window   || window;
-        document = options.document || document;
-        location = options.location || location;
+        options      = options||{};
+        $            = options.jQuery   || $ ;
+        window       = options.window   || window;
+        document     = options.document || document;
+        location     = options.location || location;
 
         const winid  = options.winid    || -1;
         const holder = options.holder   ||  '#holder';
@@ -317,7 +331,7 @@ module.exports = new (function WebView() {
             goBack:     _goBack,
             goForward:  _goForward,
             reload:     _reload,
-//             popupMenu:  _popupMenu,
+            popupMenu:  _popupMenu,
 //             favicon:    _focusUrl,
 //             heart:      handlers.toggleFavorites,
         };
