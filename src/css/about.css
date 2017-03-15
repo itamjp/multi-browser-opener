@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+html, body {
+	position:     relative;
+	height:       100%;
+	width:        100%;
+	margin:       0;
+	padding:      0;
+}
+.body-about {
+	position:     relative;
+	overflow:     hidden;
+	height:       100%;
+	width:        100%;
+	background:   #ffffff;
+	box-sizing:   border-box;
+}
+
+.body-about #bg {
+	height:           100%;
+	width:            100%;
+	padding:          0;
+	margin:           20px;
+	display:          flex;
+	flex-direction:   column;
+	flex-wrap:        nowrap;
+	justify-content:  center;
+	align-items:      stretch;
+	align-content:    stretch;
+}
+.body-about #bg #header-bg {
+	display:          flex;
+	flex:             0 0 4px;
+}
+.body-about #bg #main-bg {
+	display:          flex;
+	flex:             1 1 auto;
+}
+.body-about #bg #footer-bg {
+	display:          flex;
+
+	flex:             0 0 4px;
+}
+
+.body-about .main {
+	width:            100%;
+	height:           100%;
+}
+.body-about .main-section {
+	height:           auto;
+	width:            100%;
+	padding:          8px 0px;
+	margin:           0px;
+	display:          flex;
+	flex-direction:   row;
+	flex-wrap:        nowrap;
+	justify-content:  center;
+	align-items:      stretch;
+	align-content:    stretch;
+}
+.body-about .main-section .icon {
+	display:          flex;
+	flex-direction:   row;
+	flex-wrap:        nowrap;
+	justify-content:  center;
+	flex:             0 0 88px;
+
+}
+.body-about .main-section .description {
+	flex:             1 1 auto;
+}
+.body-about .main-section .description ul {
+	list-style-type:  none;
+	padding-left:     8px;
+	margin:           0px;
+	width:            100%;
+	height:           100%;
+	display:          flex;
+	flex-direction:   column;
+	justify-content:  flex-end;
+}
+.body-about .main-section .description li {
+	line-height:      1.4em;
+	flex:             0 0 1.4em;
+}
+.body-about .main-section .libraries {
+	flex:             1 1 auto;
+	margin-left:      8px;
+}
+.body-about .main-section .libraries h4 {
+	margin:           8px 0px 4px 4px;
+}
+.body-about .main-section .libraries ul {
+	list-style-type:  square;
+	padding-left:     40px;
+	margin:           0px;
+	width:            100%;
+	height:           auto;
+	display:          flex;
+	flex-direction:   column;
+	justify-content:  flex-end;
+}
+.body-about .main-section .libraries li {
+	line-height:      1.4em;
+	flex:             0 0 1.4em;
+}
+
+/*
+.body-about #bg {
+	position:     relative;
+	min-height:   472px;
+}
+.body-about #header-bg {
+	position:     fixed;
+	top:          0px;
+	bottom:       auto;
+	left:         0px;
+	right:        0px;
+	height:       50px;
+	width:        auto;
+	box-sizing:   border-box;
+	border-color: #c1ebfc;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	padding:      10px 15px 5px 15px;
+	margin:       0;
+	z-index:      100;
+	background:   #e3f2fd;
+}
+.body-about #header {
+	margin:       0px 0px 10px 0px;
+}
+.body-about #accounts-bg {
+	position:     relative;
+	padding:      66px 0px 46px 0px;
+}
+.body-about #footer-bg {
+	position:     fixed;
+	top:          auto;
+	bottom:       0px;
+	left:         0px;
+	right:        0px;
+	height:       40px;
+	width:        auto;
+	box-sizing:   border-box;
+	border-color: #c1ebfc;
+	border-style: solid;
+	border-width: 1px 0 0 0;
+	padding:      5px 15px 10px 15px;
+	margin:       0;
+	z-index:      100;
+	background:   #e3f2fd;
+}
+.body-about #accounts-bg .spin-box {
+	width:        14px;
+	line-height:  8px;
+	margin:       -4px 8px -4px -8px;
+}
+.body-about #accounts-bg .spin-box > span {
+	cursor:       pointer;
+	touch-action: manipulation;
+	border:       #dadada 1px solid;
+}
+.body-about .accounts .buttons button:nth-last-child(1),
+.body-about .accounts .buttons button:nth-last-child(2) {
+	margin-left:  8px;
+}
+.body-about .accounts .icon {
+
+	height:       22px;
+	width:        22px;
+}
+.body-about .accounts .icon > img {
+	vertical-align: top;
+	height:       16px;
+	width:        16px;
+	margin:       3px;
+}
+.body-about .tooltip-inner {
+  max-width:    400px;
+}
+.body-about .accounts .dl-horizontal {
+	margin-top:   4px;
+	margin-bottom: 4px;
+}
+.body-about .accounts .dl-horizontal dt {
+	width:        18px;
+	line-height:  18px;
+}
+.body-about .accounts .dl-horizontal dd {
+	margin-left:  22px;
+	width:        280px;
+	text-align:   left;
+	padding:      2px 20px 0px 0px;
+	line-height:  18px;
+}
+
+*/

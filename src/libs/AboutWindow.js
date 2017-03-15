@@ -56,12 +56,15 @@ module.exports = new (function AboutWindow() {
         Log.info('Create about window [pid=' + process.pid + ']');
 
         Window    = new Electron.BrowserWindow({
-            width:                  600,
+            width:                  500,
             height:                 400,
             'use-content-size':     false,
             center:                 true,
             icon:                   ICONS.APP,
             resizable:              false,
+            minimizable:            false,
+            maximizable:            false,
+            fullscreenable:         false,
             show:                   true,
             frame:                  true,
             'web-preferences':      {
@@ -76,9 +79,10 @@ module.exports = new (function AboutWindow() {
             },
             alwaysOnTop:            false,
             skipTaskbar:            false,
-            title:                  'hoge',
+            title:                  __PRODUCT_NAME__,
             // titleBarStyle:          'hidden',
         });
+        Window.on('close', _handleClose);
         Window.loadURL(Path.resolve(__BASE__ + '/about.html'));
         Window.setMenu(null);
 //         if ( isDevToolsOpened === true ) {
@@ -104,6 +108,17 @@ module.exports = new (function AboutWindow() {
     };
 
     /**
+     * ウィンドウを閉じる
+     *
+     * @type    {Function}
+     * @method
+     * @return  {Boolean}   true
+     */
+    self.close = function close() {
+        return self.quit();
+    };
+
+    /**
      * ウィンドウを閉じる(開放する)
      *
      * @type    {Function}
@@ -115,9 +130,21 @@ module.exports = new (function AboutWindow() {
             // 無ければ抜ける
             return false;
         }
-        Window.close();
         Window.destroy();
+        Window = null;
         return true;
+    };
+
+    /**
+     * ウィンドウを閉じる処理
+     *
+     * @method
+     * @param   {Event}     event
+     * @return  {Boolean}   true
+     * @private
+     */
+    const _handleClose = function _handleClose(event) {
+        return self.quit();
     };
 
     // -------------------------------------------------------------------------

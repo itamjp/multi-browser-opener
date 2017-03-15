@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Multi Browser Opener</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka-hack.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-customize.css">
+	<link rel="stylesheet" type="text/css" href="./css/about.css">
+	<script type="text/javascript"> jQuery = $ = require('./js/jquery-2.1.4.min'); </script>
+</head>
+<body class="body-about gray-lighter">
+	<div id="bg" class="about container">
+		<div id="header-bg">
+			<h3 id="header" class="pull-left"></h3>
+			<!-- button class="glyphicon glyphicon-refresh btn btn-primary btn-xs" aria-hidden="true" id="button-reload"></button -->
+		</div>
+		<div id="main-bg">
+			<div class="section main">
+				<div class="section main-section">
+					<div class="icon">
+						<img src="./img/ifollow-icon72.png" width="72" height="72" alt="icon">
+					</div>
+					<div class="description">
+						<ul>
+							<li><span id="product">Multi Browser Opener</span> / v<span id="version">x.x.x</span> &nbsp; <a class="openExternal" href="https://github.com/itamjp/multi-browser-opener">Source code.</a></li>
+							<li>Copyright &copy; 2017 iFollow Co., Ltd.</li>
+							<li>Provided under the <a class="openExternal" href="https://opensource.org/licenses/MIT">MIT license</a>.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="section main-section">
+					<div class="libraries">
+						<h4>Libraries:</h4>
+						<ul>
+							<li><a class="openExternal" href="https://electron.atom.io/">Electron</a></li>
+							<li><a class="openExternal" href="https://jquery.org/">jQuery</a></li>
+							<li><a class="openExternal" href="http://getbootstrap.com/">Bootstrap</a></li>
+							<li><a class="openExternal" href="http://honokak.osaka/">Honoka</a></li>
+							<li><a class="openExternal" href="http://tango.freedesktop.org/Tango_Icon_Library">Tango Icon Library</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer-bg">
+		</div>
+	</div>
+	<script type="text/javascript">
+		require(__dirname + '/libs/$IF.js');
+		$IF.get('./libs/Log.js');
+		Log.info('Open about window. [pid=' + process.pid + ']');
+
+		// onready
+		$(function(){
+			$('#version').html(__PRODUCT_VERSION__);
+			$('#button-reload').on('click', function(){
+				location.reload();
+			});
+
+			$('.openExternal').on('click', function openExternal(event){
+				const evt     = event.originalEvent || event || { preventDefault: function(){} };
+				evt.preventDefault();
+				const element = $(event.target || this);
+				const url     = element.attr('href') || element.attr('src') || element.attr('data-url') || 'about:blank';
+				Log.info('Open new window:', url);
+				Electron.remote.shell.openExternal(url);
+				return true;
+			});
+		});
+	</script>
+	<script type="text/javascript" src="./js/bootstrap-honoka.min.js"></script>
+</body>
+</html>
