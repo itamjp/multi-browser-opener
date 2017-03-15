@@ -109,7 +109,7 @@ module.exports = new (function TrayIcon() {
         menu.push({
             icon:           ICONS.ABOUT,
             label:          'このアプリについて ...',
-            click:          function(menuItem, browserWindow, event){ alert(menuItem.label); },
+            click:          _showAboutWindow,
         });
         menu.push({ type: 'separator' });
         menu.push({
@@ -167,6 +167,22 @@ module.exports = new (function TrayIcon() {
      */
     const _showMenuWindow = function _showMenuWindow(menuItem, browserWindow, event) {
         $IF.get('./libs/MenuWindow.js').show();
+        return true;
+    };
+
+    /**
+     * アバウトウィンドウを開く
+     *
+     * @type    {Function}
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _showAboutWindow = function _showAboutWindow(menuItem, browserWindow, event) {
+        $IF.get('./libs/AboutWindow.js').show();
         return true;
     };
 
