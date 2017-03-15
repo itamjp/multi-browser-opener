@@ -172,6 +172,12 @@ module.exports = new (function $IF() {
             enumerable:     true,
             configurable:   true,
         });
+        Object.defineProperty(global, '__PRODUCT_VERSION__', {
+            value:          App.getVersion(),
+            writable:       false,
+            enumerable:     true,
+            configurable:   true,
+        });
         Object.defineProperty(global, 'alert', {
             value:          _alert,
             writable:       false,
