@@ -1,11 +1,11 @@
 ﻿"use strict";
 /**
- * AboutWindow モジュール
+ * ConfigureWindow モジュール
  *
- * @module  {AboutWindow}   AboutWindow
- * @class   {AboutWindow}
+ * @module  {ConfigureWindow}   ConfigureWindow
+ * @class   {ConfigureWindow}
  */
-module.exports = new (function AboutWindow() {
+module.exports = new (function ConfigureWindow() {
     /**
      * 実行コンテキスト
      *
@@ -39,15 +39,16 @@ module.exports = new (function AboutWindow() {
      *
      * @type    {Function}
      * @method
+     * @param   {String}    name
      * @return  {Boolean}   true
      */
-    self.create = function create(){
+    self.create = function create(name){
         if ( Window === null ) {
             // なければ生成
-            Log.info('Create about window [pid=' + process.pid + ']');
+            Log.info('Create configure window [pid=' + process.pid + '] with [name=' + name + ']');
             Window    = new Electron.BrowserWindow({
-                width:                  500,
-                height:                 400,
+                width:                  800,
+                height:                 600,
                 'use-content-size':     false,
                 center:                 true,
                 icon:                   ICONS.APP,
@@ -69,15 +70,15 @@ module.exports = new (function AboutWindow() {
                 },
                 alwaysOnTop:            false,
                 skipTaskbar:            false,
-                title:                  __PRODUCT_NAME__,
+                title:                  '設定 - '+ __PRODUCT_NAME__,
                 // titleBarStyle:          'hidden',
             });
             Window.on('close', self.close);
             Window.setMenu(null);
         }
-        Window.loadURL(__BASE__ + SEP + 'about.html');
+        Window.loadURL(Path.resolve(__BASE__ + '/configure.html') + '?' + encodeURIComponent(name||''));
 //         if ( isDevToolsOpened === true ) {
-//             Window.openDevTools();
+            Window.openDevTools();
 //         }
         return true;
     };
@@ -87,10 +88,11 @@ module.exports = new (function AboutWindow() {
      *
      * @type    {Function}
      * @method
+     * @param   {String}    name
      * @return  {Boolean}   true
      */
-    self.show = function show() {
-        self.create();
+    self.show = function show(name) {
+        self.create(name||'');
         Window.show();
         return true;
     };

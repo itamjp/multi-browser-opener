@@ -175,7 +175,7 @@ module.exports = new (function MenuWindow() {
         Window.on('minimize', _handleClose);
         Window.on('close',    _handleClose);
         Window.on('focus',    _handleFocus);
-        Window.loadURL(Path.resolve(__BASE__ + '/menu.html'));
+        Window.loadURL(__BASE__ + SEP + 'menu.html');
         Window.setMenu(null);
         canClose  = false;
 //             if ( isDevToolsOpened === true ) {

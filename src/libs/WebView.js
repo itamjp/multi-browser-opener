@@ -35,7 +35,7 @@ module.exports = new (function WebView() {
      *
      * @type    {Function}
      */
-    let $ = global.jQuery || global.$ ;
+    let $ = global.jQuery || global.$;
 
     /**
      * window

@@ -52,7 +52,7 @@ module.exports = new (function TrayIcon() {
      */
     const _init = function _init() {
         instance      = new Electron.Tray(ICONS.APP);
-        instance.setToolTip('This is my application.');
+        instance.setToolTip('This is my application. @todo ★');
 //         menu     = menu.concat(_getMenuWindows());
         const submenu = [];
         const menu    = [];

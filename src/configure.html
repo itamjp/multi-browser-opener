@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>設定画面 - Multi Browser Opener</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-honoka-hack.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-customize.css">
+	<link rel="stylesheet" type="text/css" href="./css/configure.css">
+	<script type="text/javascript"> jQuery = $ = require('./js/jquery-2.1.4.min'); </script>
+</head>
+<body class="body-configure gray-lighter">
+	<div id="bg" class="configure container">
+		<div id="header-bg">
+			<h3 id="header" class="pull-left"></h3>
+			<a class="btn btn-primary btn-xs" id="button-reload"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+		</div>
+		<div id="main-bg">
+			<div class="section left">
+				<div class="section list main-content">
+					<h4><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 設定一覧</h4>
+					<ol class="account-list">
+						<li class="" data-account-key="hoge">
+						</li>
+						<li class="" data-account-key="itamjp__@twitter.com">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="">
+						</li>
+						<li class="all">
+							全体
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="section right">
+				<div class="section detail main-content">
+					<h4><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 設定内容</h4>
+					<div class="article detail-content">
+						<form action="#" class="form-horizontal">
+							<div class="form-group has-feedback">
+								<label for="account-key" class="col-xs-4 control-label">識別子：</label>
+								<div class="col-xs-6">
+									<input type="text" class="form-control" id="account-key" aria-describedby="keyStatus" readonly value="アカウント">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="keyStatus" class="sr-only"></span>
+								</div>
+								<div class="col-xs-2">
+									<label for="account-valid" class="control-label pull-right">
+										<input type="checkbox" id="account-valid" value="1"> 有効
+									</label>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-name" class="col-xs-4 control-label">アカウント名：</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="account-name" aria-describedby="nameStatus" value="アカウント">
+									<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+									<span id="nameStatus" class="sr-only"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-icon" class="col-xs-4 control-label">アカウントアイコン：</label>
+								<div class="col-xs-1">
+									<div class="icon">
+										<img src="./img/spinner.gif" width="16" height="16" id="icon-img">
+									</div>
+								</div>
+								<div class="col-xs-5">
+									<input type="text" class="form-control readonly-white" id="account-icon" aria-describedby="iconStatus" readonly value="アカウント">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="iconStatus" class="sr-only"></span>
+								</div>
+								<div class="col-xs-2">
+									<label for="account-svcicon-web" class="control-label pull-right">
+										<input type="checkbox" id="account-svcicon-web"> WEB
+									</label>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-svc" class="col-xs-4 control-label">サービス：</label>
+								<div class="col-xs-8">
+									<select class="form-control" id="account-svc" aria-describedby="svcStatus">
+										<option>-</option>
+										<option data-svcname="Google Calendar" data-svcicon="./img/svc-googlecalendar.png" data-svcurl="https://calendar.google.com/calendar/render">Google Calendar</option>
+										<option data-svcname="Google Gmail"    data-svcicon="./img/svc-googlegmail.png"    data-svcurl="https://mail.google.com/mail/u/0/#inbox">Google Gmail</option>
+										<option data-svcname="Twitter"         data-svcicon="./img/svc-twitter.png"        data-svcurl="https://twitter.com/">Twitter</option>
+										<option data-svcname=""                data-svcicon=""                             data-svcurl="">Custom</option>
+									</select>
+									<span id="svcStatus" class="sr-only"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-svcname" class="col-xs-4 control-label">サービス名：</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="account-svcname" aria-describedby="svcnameStatus">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="svcnameStatus" class="sr-only"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-svcurl" class="col-xs-4 control-label">サービスURL：</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="account-svcurl" aria-describedby="svcurlStatus">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="svcurlStatus" class="sr-only"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-svcicon" class="col-xs-4 control-label">サービスアイコン：</label>
+								<div class="col-xs-1">
+									<div class="icon">
+										<img src="./img/spinner.gif" width="16" height="16" id="svcicon-img">
+									</div>
+								</div>
+								<div class="col-xs-5">
+									<input type="text" class="form-control readonly-white" id="account-svcicon" aria-describedby="svciconStatus" readonly value="アカウント">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="svciconStatus" class="sr-only"></span>
+								</div>
+								<div class="col-xs-2">
+									<label for="account-svcicon-web" class="control-label pull-right">
+										<input type="checkbox" id="account-svcicon-web"> WEB
+									</label>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-titleprefix" class="col-xs-4 control-label">タイトル接頭辞：</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="account-titleprefix" aria-describedby="titleprefixStatus">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="titleprefixStatus" class="sr-only"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-partition" class="col-xs-4 control-label">保存用識別子：</label>
+								<div class="col-xs-5">
+									<input type="text" class="form-control" id="account-partition" aria-describedby="partitionStatus">
+									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+									<span id="partitionStatus" class="sr-only"></span>
+								</div>
+								<div class="col-xs-3">
+									<label for="account-anotherkey" class="control-label pull-right">
+										<input type="checkbox" id="account-anotherkey" value="1"> 別に指定する
+									</label>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="account-style" class="col-xs-4 control-label">カスタムCSS：</label>
+								<div class="col-xs-8">
+									<textarea class="form-control" id="account-style" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<div class="col-xs-offset-4 col-xs-8">
+									<button type="submit" class="btn btn-primary btn-sm">保存する</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer-bg">
+		</div>
+	</div>
+	<script type="text/javascript">
+		require(__dirname + '/libs/$IF.js');
+		$IF.get('./libs/Log.js');
+		Log.info('Open configure window. [pid=' + process.pid + ']');
+
+		// アカウントデータ取得
+		const data = $IF.getMain('./libs/Config.js').getAccounts();
+
+		// アカウントの選択
+		const selectAccount = function selectAccount(evt){
+			const $this   = $(this);
+			const key     = $this.data('account-key');
+			const account = data[key] || null;
+			$('.account-list > li').removeClass('active');
+			$this.addClass('active');
+			Log.info(account);
+		};
+
+		// onready
+		$(function(){
+			$('#button-reload').on('click', function(){
+				location.reload();
+			});
+			$('.account-list > li').on('click', selectAccount);
+
+			$('.openExternal').on('click', function openExternal(event){
+				const evt     = event.originalEvent || event || { preventDefault: function(){} };
+				evt.preventDefault();
+				const element = $(event.target || this);
+				const url     = element.attr('href') || element.attr('src') || element.attr('data-url') || 'about:blank';
+				Log.info('Open new window:', url);
+				Electron.remote.shell.openExternal(url);
+				return true;
+			});
+
+			let key = decodeURIComponent(location.search.substr(1));
+			$('.account-list > li').each(function(){
+				if ( $(this).data('account-key') === key ) {
+					selectAccount.call(this);
+				}
+			});
+		});
+	</script>
+<!--
+    "hojo@ifollow.co.jp": {
+      "key": "hojo@ifollow.co.jp",
+      "valid": true,
+      "name": "hojo@ifollow.co.jp",
+      "icon": "uploads/hojo@ifollow.co.jp/icon.png",
+      "svcname": "Google calendar",
+      "svcicon": "uploads/hojo@ifollow.co.jp/svcicon.png",
+      "svcurl": "https://calendar.google.com/calendar/render",
+      "partition": "hojo@ifollow.co.jp",
+      "style": "\t\t/* start with Sunday */\n\t\ttd.tg-weekend:nth-child(3),\n\t\ttd.tg-weekend:nth-child(3) .tg-weekend,\n\t\t.dp-cell.dp-weekendh:nth-child(1),\n\t\t.dp-cell.dp-weekend:nth-child(1) {\n\t\t\tbackground-color: #ffeeff;\n\t\t}\n\t\ttd.tg-weekend:nth-last-child(1),\n\t\ttd.tg-weekend:nth-last-child(1) .tg-weekend,\n\t\t.dp-cell.dp-weekendh:nth-last-child(1),\n\t\t.dp-cell.dp-weekend:nth-last-child(1) {\n\t\t\tbackground-color: #eeffff;\n\t\t}\n\t\t/* start with Monday */\n\t\ttd.tg-weekend:nth-last-child(2),\n\t\ttd.tg-weekend:nth-last-child(2) .tg-weekend,\n\t\t.dp-cell.dp-weekendh:nth-last-child(2),\n\t\t.dp-cell.dp-weekend:nth-last-child(2) {\n\t\t\tbackground-color: #eeffff;\n\t\t}\n\t\ttd.tg-weekend:nth-last-child(1),\n\t\ttd.tg-weekend:nth-last-child(1) .tg-weekend,\n\t\t.dp-cell.dp-weekendh:nth-last-child(1),\n\t\t.dp-cell.dp-weekend:nth-last-child(1) {\n\t\t\tbackground-color: #ffeeff;\n\t\t}\n",
+    },
+    "Masaki.Hojo@gmail.com": {
+      "key": "Masaki.Hojo@gmail.com",
+      "name": "Masaki.Hojo@gmail.com",
+      "icon": "uploads/Masaki.Hojo@gmail.com/icon.png",
+      "svcname": "Google calendar",
+      "svcicon": "uploads/Masaki.Hojo@gmail.com/svcicon.png",
+      "svcurl": "https://hoge.com/hogehoge",
+      "partition": "Masaki.Hojo@gmail.com",
+      "start": false,
+      "valid": false
+    },
+-->
+	<script type="text/javascript" src="./js/bootstrap-honoka.min.js"></script>
+</body>
+</html>

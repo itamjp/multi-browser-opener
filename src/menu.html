@@ -16,11 +16,15 @@
 				Multi Browser Opener
 			</h3>
 			<div class="buttons pull-right">
-				<button class="glyphicon glyphicon-refresh btn btn-primary btn-xs" aria-hidden="true" id="button-reload"></button>
-				<button class="glyphicon glyphicon-remove btn btn-danger btn-xs" aria-hidden="true" id="button-quit"></button>
-				<!--
-				<button class="glyphicon glyphicon-remove btn btn-default btn-xs" aria-hidden="true" id="button-close"></button>
-				-->
+				<a class="btn btn-primary btn-xs" aria-hidden="true" id="button-reload">
+					<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+				</a>
+				<a class="btn btn-default btn-xs" aria-hidden="true" id="button-configure">
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Configure
+				</a>
+				<a class="btn btn-danger btn-xs" aria-hidden="true" id="button-quit">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Quit
+				</a>
 			</div>
 		</div>
 		<div id="accounts-bg">
@@ -406,6 +410,10 @@
 			// 再読み込みボタン
 			$('#button-reload').on('click', function(){
 				location.reload();
+			});
+			// 閉じるボタン
+			$('#button-configure').on('click', function(){
+				$IF.getMain('./libs/ConfigureWindow.js').show();
 			});
 
 			// アカウントデータ取得

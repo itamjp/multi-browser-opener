@@ -541,7 +541,7 @@ Log.info(__HERE__);
         items.push({ type: 'separator' });
         items.push({
             icon:           ICONS.PROPERTY,
-            label:          'このウィンドウの設定を変更する ...',
+            label:          'このウィンドウの設定を開く ...',
             click:          _configure,
         });
         items.push({
@@ -606,13 +606,8 @@ Log.info(__HERE__);
      * @private
      */
     const _configure = function _configure(menuItem, browserWindow, event) {
-// ★★★★ @todo
-        alert([
-            __HERE__,
-            "item.label:" + (menuItem||{}).label,
-            "item.id:"    + (menuItem||{}).id,
-            "win.id:"     + (browserWindow||{}).id,
-        ].join('\n'));
+        const each = Stored[WindowIds[browserWindow.id]] || { name: '' };
+        $IF.get('./libs/ConfigureWindow.js').show(each.name);
         return true;
     };
 

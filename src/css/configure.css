@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+html, body {
+	position:             relative;
+	height:               100%;
+	width:                100%;
+	margin:               0;
+	padding:              0;
+}
+.body-configure {
+	position:             relative;
+	overflow:             hidden;
+	height:               100%;
+	width:                100%;
+	background:           #ffffff;
+	box-sizing:           border-box;
+}
+.body-configure input,
+.body-configure textarea {
+	font-family:          "Open Sans","Helvetica Neue",Helvetica,Arial,"游ゴシック",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+	font-weight:          500;
+}
+.body-configure .form-horizontal {
+	font-size:            14px;
+}
+.body-configure .form-horizontal .control-label {
+	font-weight:          500;
+	padding-top:          5px;
+}
+.body-configure .form-control {
+	height:               30px;
+	padding:              4px 30px 4px 10px;
+	font-size:            14px;
+}
+.body-configure textarea.form-control {
+	height:               auto;
+}
+.body-configure .form-control-feedback {
+	width:                30px;
+	height:               30px;
+	line-height:          30px;
+}
+.body-configure .form-horizontal .has-feedback .form-control-feedback {
+	right:                7px;
+}
+.body-configure .col-lg-1, .body-configure .col-lg-10, .body-configure .col-lg-11, .body-configure .col-lg-12, .body-configure .col-lg-2, .body-configure .col-lg-3, .body-configure .col-lg-4, .body-configure .col-lg-5, .body-configure .col-lg-6, .body-configure .col-lg-7, .body-configure .col-lg-8, .body-configure .col-lg-9, .body-configure .col-md-1, .body-configure .col-md-10, .body-configure .col-md-11, .body-configure .col-md-12, .body-configure .col-md-2, .body-configure .col-md-3, .body-configure .col-md-4, .body-configure .col-md-5, .body-configure .col-md-6, .body-configure .col-md-7, .body-configure .col-md-8, .body-configure .col-md-9, .body-configure .col-sm-1, .body-configure .col-sm-10, .body-configure .col-sm-11, .body-configure .col-sm-12, .body-configure .col-sm-2, .body-configure .col-sm-3, .body-configure .col-sm-4, .body-configure .col-sm-5, .body-configure .col-sm-6, .body-configure .col-sm-7, .body-configure .col-sm-8, .body-configure .col-sm-9, .body-configure .col-xs-1, .body-configure .col-xs-10, .body-configure .col-xs-11, .body-configure .col-xs-12, .body-configure .col-xs-2, .body-configure .col-xs-3, .body-configure .col-xs-4, .body-configure .col-xs-5, .body-configure .col-xs-6, .body-configure .col-xs-7, .body-configure .col-xs-8, .body-configure .col-xs-9 {
+	padding-left:         5px;
+	padding-right:        5px;
+}
+
+.body-configure #bg {
+	height:               100%;
+	width:                100%;
+	padding:              0;
+	margin:               0px;
+	display:              flex;
+	flex-direction:       column;
+	flex-wrap:            nowrap;
+	justify-content:      center;
+	align-items:          stretch;
+	align-content:        stretch;
+}
+.body-configure #bg > #header-bg {
+	display:              flex;
+	flex:                 0 0 40px;
+	border:               solid 0px #c0c0c0;
+	border-width:         0 0 2px 0;
+}
+.body-configure #bg > #main-bg {
+	display:              flex;
+	flex:                 1 1 auto;
+}
+.body-configure #bg > #footer-bg {
+	display:              flex;
+	flex:                 0 0 0px;
+}
+.body-configure #main-bg {
+	height:               100%;
+	width:                100%;
+	padding:              0;
+	margin:               0px;
+	display:              flex;
+	flex-direction:       row;
+	flex-wrap:            nowrap;
+	justify-content:      center;
+	align-items:          stretch;
+	align-content:        stretch;
+}
+.body-configure #main-bg > .left {
+	flex:                 0 0 250px;
+	border:               solid 0px #c0c0c0;
+	border-width:         0 2px 0 0;
+}
+.body-configure #main-bg > .right {
+	flex:                 1 1 auto;
+}
+
+.body-configure .main-content {
+	display:              flex;
+	flex-direction:       column;
+	height:               100%;
+}
+.body-configure .main-content > * {
+	flex:                 1 1 auto;
+}
+.body-configure .main-content h4 {
+	flex:                 0 0 50px;
+	padding:              12px;
+	margin:               0px;
+	background-color:     #eeeeee;
+	border:               solid 0px #c0c0c0;
+	border-width:         0 0 2px 0;
+}
+
+.body-configure .account-list {
+	padding:              0 0 1px 0;
+	background-color:     #c0c0c0;
+	overflow:             hidden;
+	overflow-y:           auto;
+	margin:               0;
+}
+.body-configure .account-list > li {
+	text-indent:          10px;
+	list-style-position:  inside;
+	margin:               0 0 1px 0;
+	line-height:          32px;
+	cursor:               pointer;
+	background-color:     #ffffff;
+}
+.body-configure .account-list > li.all {
+	list-style:           none;
+	margin-top:           2px;
+}
+.body-configure .account-list > li.active {
+	background-color:     #ffffc0;
+}
+.body-configure .account-list > li:hover {
+	background-color:     #c0ffc0;
+}
+
+.body-configure .detail-content {
+	padding:              20px 25px;
+	overflow:             hidden;
+	overflow-y:           auto;
+	margin:               0;
+}
+.body-configure .detail-content .icon {
+	width:                100%;
+	height:               30px;
+	line-height:          28px;
+	text-align:           center;
+	background:           #eeeeee;
+	box-sizing:           border-box;
+	border:               solid 1px #eeeeee;
+	border-radius:        2px;
+}
+.body-configure .detail-content .icon img {
+	padding:              1px;
+}
