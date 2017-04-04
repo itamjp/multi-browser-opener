@@ -15,6 +15,25 @@ html, body {
 	background:           #ffffff;
 	box-sizing:           border-box;
 }
+.body-configure .glyphicon {
+  top:                  2px;
+}
+.body-configure input[type=text].form-control +  .glyphicon,
+.body-configure input[type=password].form-control +  .glyphicon,
+.body-configure input[type=file].form-control +  .glyphicon,
+.body-configure input[type=search].form-control +  .glyphicon,
+.body-configure input[type=tel].form-control +  .glyphicon,
+.body-configure input[type=url].form-control +  .glyphicon,
+.body-configure input[type=email].form-control +  .glyphicon,
+.body-configure input[type=number].form-control +  .glyphicon,
+.body-configure input[type=datetime].form-control +  .glyphicon,
+.body-configure input[type=datetime-local].form-control +  .glyphicon,
+.body-configure input[type=date].form-control +  .glyphicon,
+.body-configure input[type=time].form-control +  .glyphicon,
+.body-configure input[type=month].form-control +  .glyphicon,
+.body-configure input[type=week].form-control +  .glyphicon {
+	top:                  0px;
+}
 .body-configure input,
 .body-configure textarea {
 	font-family:          "Open Sans","Helvetica Neue",Helvetica,Arial,"游ゴシック",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
@@ -62,9 +81,9 @@ html, body {
 }
 .body-configure #bg > #header-bg {
 	display:              flex;
-	flex:                 0 0 40px;
+	flex:                 0 0 46px;
 	border:               solid 0px #c0c0c0;
-	border-width:         0 0 2px 0;
+	border-width:         0 0 1px 0;
 }
 .body-configure #bg > #main-bg {
 	display:              flex;
@@ -105,7 +124,7 @@ html, body {
 }
 .body-configure .main-content h4 {
 	flex:                 0 0 50px;
-	padding:              12px;
+	padding:              12px 12px 6px 12px;
 	margin:               0px;
 	background-color:     #eeeeee;
 	border:               solid 0px #c0c0c0;
@@ -156,4 +175,30 @@ html, body {
 }
 .body-configure .detail-content .icon img {
 	padding:              1px;
+}
+
+.body-configure .panel-body {
+	padding:              15px 25px;
+}
+.body-configure #header-icons-left {
+	position:     absolute;
+	list-style:   none;
+	width:        auto;
+	left:         0px;
+	right:        0px;
+	margin:       0;
+	padding:      0;
+	background:   #f1f1f1;
+}
+.body-configure #header-icons-left button {
+	line-height:  20px;
+}
+.body-configure #header-icons-left li {
+	margin:       6px 2px 7px 2px;
+}
+.body-configure #header-icons-left li:first-child {
+	margin-left:  8px;
+}
+.body-configure #header-icons-left li:last-child {
+	margin-right: 8px;
 }
