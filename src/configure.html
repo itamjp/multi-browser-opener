@@ -41,7 +41,6 @@
 						<div class="pull-right" style="padding-top: 0;">
 							<div class="btn-group">
 								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></button>
 							</div>
 							<div class="btn-group">
 								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>
@@ -49,45 +48,22 @@
 							</div>
 						</div>
 					</h4>
-					<ol class="account-list">
-						<li class="" data-account-key="hoge">
-						</li>
-						<li class="" data-account-key="itamjp__@twitter.com">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="">
-						</li>
-						<li class="all">
-							全体
+					<ol class="account-list" id="account-list"></ol>
+					<ol class="account-list hide" id="account-template">
+						<li class="text-left account-block" style="position: relative;" data-account-key="account-key" data-account-name="account-name">
+							&nbsp;
+							<div class="account-name-bg">
+								<span class="account-name">account-name</span>
+							</div>
+							<div class="account-icon-bg">
+								<span class="icon"><img class="account-icon" width="16" height="16" src="./img/spinner.gif"></span>
+							</div>
+							<div class="account-svcname-bg">
+								<span class="account-svcname">account-svcname</span>
+							</div>
+							<div class="account-svcicon-bg">
+								<span class="svcicon"><img class="account-svcicon" width="16" height="16" src="./img/spinner-black.gif"></span>
+							</div>
 						</li>
 					</ol>
 				</div>
@@ -95,15 +71,19 @@
 			<div class="section right">
 				<div class="section detail main-content">
 					<h4>
-						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 設定内容
+						<div class="pull-left" style="padding-top: 0;">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 設定内容
+							&nbsp;
+							<small class="text-danger blink hide" id="editing"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 編集中</small>
+						</div>
 						<div class="pull-right" style="padding-top: 0;">
-							<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存</button>
-							<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> ダウンロード</button>
-							<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> この設定を削除</button>
+							<button class="btn btn-default btn-xs" id="save" disabled><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存</button>
+							<button class="btn btn-default btn-xs" id="download" ><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> ダウンロード</button>
+							<button class="btn btn-danger btn-xs" id="remove"  disabled><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> この設定を削除</button>
 						</div>
 					</h4>
 					<div class="article detail-content">
-						<form action="javascript:void(0);" class="form-horizontal">
+						<form action="javascript:void(0);" class="form-horizontal content-edit">
 
 							<div class="panel panel-primary">
 								<div class="panel-heading">
@@ -148,11 +128,11 @@
 									<div class="form-group has-feedback">
 										<div class="col-xs-3 col-md-2">
 											<label class="control-label pull-right">
-												<input type="checkbox" id="account-anotherkey" value="1">
+												<input type="checkbox" id="anotherkey" value="1">
 											</label>
 										</div>
 										<div class="col-xs-9 col-md-10">
-											<label for="account-anotherkey" class="control-label">
+											<label for="anotherkey" class="control-label">
 												別途保存用に識別子を指定する
 											</label>
 										</div>
@@ -168,7 +148,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-md-2 control-label">データ保存場所</label>
 										<div class="col-xs-9 col-md-10 control-label">
-											<textarea class="form-control" readonly rows="3" style="resize: vertical; word-break: break-all; line-height: 22px; text-align: left;">C:\Users\m.hojo\AppData\Roaming\multi-browser-opener\Partitions\hojo@ifollow.co.jp</textarea>
+											<textarea class="form-control" id="datadir" readonly rows="3" style="resize: vertical; word-break: break-all; line-height: 22px; text-align: left;">C:\Users\m.hojo\AppData\Roaming\multi-browser-opener\Partitions\hojo@ifollow.co.jp</textarea>
 										</div>
 									</div>
 								</div>
@@ -224,14 +204,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group has-feedback">
-										<label for="account-titleprefix" class="col-xs-3 col-md-2 control-label">タイトル接頭辞</label>
-										<div class="col-xs-9 col-md-10">
-											<input type="text" class="form-control" id="account-titleprefix" aria-describedby="titleprefixStatus">
-											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-											<span id="titleprefixStatus" class="sr-only"></span>
-										</div>
-									</div>
 								</div>
 							</div>
 
@@ -241,9 +213,50 @@
 								</div>
 								<div class="panel-body">
 									<div class="form-group has-feedback">
+										<label for="account-titleprefix" class="col-xs-3 col-md-2 control-label">タイトル接頭辞</label>
+										<div class="col-xs-9 col-md-10">
+											<input type="text" class="form-control" id="account-titleprefix" aria-describedby="titleprefixStatus">
+											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+											<span id="titleprefixStatus" class="sr-only"></span>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
 										<label for="account-style" class="col-xs-3 col-md-2 control-label">カスタムCSS</label>
 										<div class="col-xs-9 col-md-10">
 											<textarea class="form-control" id="account-style" rows="5" style="resize: vertical;"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</form>
+
+						<form action="javascript:void(0);" class="form-horizontal content-register">
+
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									アカウント情報
+								</div>
+								<div class="panel-body">
+									<div class="form-group has-feedback">
+										<label for="account-key" class="col-xs-3 col-md-2 control-label">識別子</label>
+										<div class="col-xs-9 col-md-10">
+											<input type="text" class="form-control" id="account-key" aria-describedby="keyStatus" require placeholder="メールアドレスやサービスのアカウントを推奨" value="">
+											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+											<span id="keyStatus" class="sr-only"></span>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="account-name" class="col-xs-3 col-md-2 control-label">アカウント名</label>
+										<div class="col-xs-9 col-md-10">
+											<input type="text" class="form-control" id="account-name" aria-describedby="nameStatus" require placeholder="分かりやすい名前" value="">
+											<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+											<span id="nameStatus" class="sr-only"></span>
+										</div>
+									</div>
+									<div class="form-group">
+									 	<div class="col-xs-offset-3 col-xs-9 col-md-offset-2 col-md-10">
+											<button type="submit" class="btn btn-primary">追加する</button>
 										</div>
 									</div>
 								</div>
@@ -263,25 +276,127 @@
 		Log.info('Open configure window. [pid=' + process.pid + ']');
 
 		// アカウントデータ取得
-		const data = $IF.getMain('./libs/Config.js').getAccounts();
+		const data    = $IF.getMain('./libs/Config.js').getAccounts();
+		let editing   = false;
+		RegExp.escape = function escape(str) {
+			return (''+(str||'')).replace(new RegExp('[\\x21\\x24\\x28\\x29\\x2a\\x2b\\x2d\\x2e\\x2f\\x3a\\x3c\\x3d\\x3e\\x3f\\x5b\\x5c\\x5d\\x5e\\x7b\\x7c\\x7d]', 'g'), '\\$&');
+		};
 
 		// アカウントの選択
 		const selectAccount = function selectAccount(evt){
-			const $this   = $(this);
-			const key     = $this.data('account-key');
-			const account = data[key] || null;
-			$('.account-list > li').removeClass('active');
+			const $this     = $(this);
+			const key       = $this.data('account-key');
+			const account   = data[key] || {};
+			$('#account-list > *').removeClass('active');
 			$this.addClass('active');
 			Log.info(account);
+			$('.content-register').addClass('hide');
+			$('.content-edit').removeClass('hide');
+			$('.content-register').removeClass('hide');
+			$('.content-edit').addClass('hide');
+
+			// ボタンの状態を変更
+			setStateShow();
+
+			// アカウント情報をセット
+			$('#account-valid')      .prop('checked', account.valid||false);
+			$('#account-key')        .val (key || 'error - unknown account key');
+			$('#account-name')       .val (account.name || '');
+			const icondir     = 'uploads/' + key;
+			const icon        = (account.icon || '').replace(new RegExp('^' + RegExp.escape(icondir) + '/'), '');
+			let   iconfile    = './img/spinner.gif';
+			$('#account-icon')       .val (icon || '');
+			if ( icon !== '' ) {
+				iconfile        = __DATA__ + SEP + icondir + SEP + icon;
+			}
+			$('#icon-img')           .attr('src', iconfile);
+			const partition   = ( account.partition || '' );
+			$('#account-partition')  .val (partition);
+			if ( partition !== key ) {
+				$('#anotherkey')       .prop('checked',  true);
+				$('#account-partition').prop('readonly', false);
+			} else {
+				$('#anotherkey')       .prop('checked',  false);
+				$('#account-partition').prop('readonly', true);
+			}
+			let   datadir     = '';
+			if ( ( account.key || '' ) !== '' ) {
+				    datadir     = __DATA__ + SEP + 'Partitions' + SEP + partition;
+			}
+			$('#datadir')            .val (datadir);
+			$('#account-svcname')    .val (account.svcname || '');
+			$('#account-svcurl')     .val (account.svcurl || '');
+			const svcicondir  = 'uploads/' + key;
+			const svcicon     = (account.svcicon || '').replace(new RegExp('^' + RegExp.escape(svcicondir) + '/'), '');
+			let   svciconfile = './img/spinner.gif';
+			$('#account-svcicon')    .val (svcicon || '');
+			if ( svcicon !== '' ) {
+				svciconfile     = __DATA__ + SEP + svcicondir + SEP + svcicon;
+			}
+			$('#svcicon-img')        .attr('src', svciconfile);
+			$('#account-titleprefix').val (account.titleprefix || '');
+			$('#account-style')      .val (account.style || '');
+		};
+
+		// ボタンの状態変更
+		const setStateRegister = function setStateRegister(){
+			$('#editing' ).removeClass('hide');
+			$('#save'    ).prop('disabled', false);
+			$('#download').prop('disabled', true );
+			$('#remove'  ).prop('disabled', true );
+		};
+		const setStateShow = function setStateShow(){
+			$('#editing' ).addClass('hide');
+			$('#save'    ).prop('disabled', true );
+			$('#download').prop('disabled', false);
+			$('#remove'  ).prop('disabled', false);
+		};
+		const setStateEditing = function setStateEditing(){
+			$('#editing' ).removeClass('hide');
+			$('#save'    ).prop('disabled', false);
+			$('#download').prop('disabled', true );
+			$('#remove'  ).prop('disabled', true);
 		};
 
 		// onready
 		$(function(){
+
+			const template = $('#account-template .account-block');
+			const accounts = $('#account-list');
+			accounts.html('');
+			let   self     = null;
+			let   each     = {};
+			let   seq      = 887;
+			for ( let key in data ) {
+				seq++;
+				each       = data[key];
+console.log(each);
+				self       = template.clone(true);
+				self                            .data('account-key',  each.key);
+				self                            .data('account-name', each.name);
+				self.find('[data-account-key]' ).data('account-key',  each.key);
+				self.find('[data-account-name]').data('account-name', each.name);
+				self.find('.account-seq'       ).html(seq + '.');
+				self.find('.account-name'      ).html(each.name);
+				self.find('.account-icon'      ).attr('src',               __DATA__ + SEP + each.icon);
+				self.find('.account-svcicon'   ).attr('src',               __DATA__ + SEP + each.svcicon);
+				self.find('.account-svcurl'    ).html(each.svcurl);
+				self.find('.account-svcname'   ).html(each.svcname);
+				accounts.append(self);
+			}
+
+			let key = decodeURIComponent(location.search.substr(1));
+			$('#account-list > *').each(function(){
+				if ( $(this).data('account-key') === key ) {
+					selectAccount.call(this);
+				}
+			});
+
+			// ボタンにイベントハンドラを付けていく
 			$('#button-reload').on('click', function(){
 				location.reload();
 			});
-			$('.account-list > li').on('click', selectAccount);
-
+			$('#account-list > *').on('click', selectAccount);
 			$('.openExternal').on('click', function openExternal(event){
 				const evt     = event.originalEvent || event || { preventDefault: function(){} };
 				evt.preventDefault();
@@ -290,13 +405,6 @@
 				Log.info('Open new window:', url);
 				Electron.remote.shell.openExternal(url);
 				return true;
-			});
-
-			let key = decodeURIComponent(location.search.substr(1));
-			$('.account-list > li').each(function(){
-				if ( $(this).data('account-key') === key ) {
-					selectAccount.call(this);
-				}
 			});
 		});
 	</script>
