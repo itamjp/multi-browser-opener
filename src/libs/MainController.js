@@ -99,6 +99,26 @@ module.exports = new (function MainController() {
 
     // -------------------------------------------------------------------------
     /**
+     * 再起動処理
+     *
+     * @method
+     * @return  {Boolean}   true
+     * @private
+     */
+    self.restart = function restart() {
+        // トレイアイコンがあれば閉じる
+        $IF.get('./libs/TrayIcon.js').quit();
+        // 明示的に終了(ウィンドウを解放)
+        $IF.get('./libs/MenuWindow.js').quit();
+        $IF.get('./libs/EachWindow.js').quit();
+        let args = process.argv.slice(1);
+        Log.info('End ' + __PRODUCT__ + ' and Restart with ["' + args.join('","') + '"]');
+        App.relaunch({args: args});
+        App.exit(0);
+        return true;
+    };
+
+    /**
      * 終了処理
      *
      * @method
@@ -113,6 +133,7 @@ Log.info(__HERE__);
         // 明示的に終了(ウィンドウを解放)
         $IF.get('./libs/MenuWindow.js').quit();
         $IF.get('./libs/EachWindow.js').quit();
+        $IF.get('./libs/AboutWindow.js').quit();
 //         // ウィンドウを全部閉じる
 //         const allWindows    = Electron.BrowserWindow.getAllWindows();
 //         for ( let win of allWindows ){

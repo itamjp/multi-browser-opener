@@ -35,6 +35,7 @@ module.exports = new (function $IF() {
         ABOUT:      './img/icon-question-16.png',
         CLOSE:      './img/icon-stop-16.png',
         QUIT:       './img/icon-switch-16.png',
+        RESTART:    './img/icon-refresh-16.png',
 
         HOME:       './img/icon-home-16.png',
         PRINTER:    './img/icon-printer-16.png',
@@ -195,6 +196,12 @@ module.exports = new (function $IF() {
         });
         Object.defineProperty(self, 'getMain', {
             value:          _getModuleMain,
+            writable:       false,
+            enumerable:     true,
+            configurable:   true,
+        });
+        Object.defineProperty(self, 'restart', {
+            value:          _restart,
             writable:       false,
             enumerable:     true,
             configurable:   true,
@@ -419,6 +426,19 @@ module.exports = new (function $IF() {
     };
 
     /**
+     * 再起動処理
+     *
+     * @method
+     * @return  {Boolean}   true
+     * @private
+     */
+    const _restart = function _restart() {
+        // MainControllerを呼び出して終了する
+        const MainController = _getModuleMain('./libs/MainController.js');
+        return MainController.restart();
+    };
+
+    /**
      * 終了処理
      *
      * @method
@@ -426,7 +446,6 @@ module.exports = new (function $IF() {
      * @private
      */
     const _quit = function _quit() {
-Log.info(__HERE__);
         // MainControllerを呼び出して終了する
         const MainController = _getModuleMain('./libs/MainController.js');
         return MainController.quit();

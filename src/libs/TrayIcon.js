@@ -113,6 +113,11 @@ module.exports = new (function TrayIcon() {
         });
         menu.push({ type: 'separator' });
         menu.push({
+            icon:           ICONS.RESTART,
+            label:          '再起動する',
+            click:          _restartApp,
+        });
+        menu.push({
             icon:           ICONS.QUIT,
             label:          'アプリケーションを終了する',
             click:          _quitApp,
@@ -206,6 +211,19 @@ module.exports = new (function TrayIcon() {
     };
 
     /**
+     * 再起動
+     *
+     * @type    {Function}
+     * @method
+     * @return  {Boolean}   true
+     * @private
+     */
+    const _restartApp = function _restartApp(menuItem, browserWindow, event) {
+        $IF.restart();
+        return true;
+    };
+
+    /**
      * 終了
      *
      * @type    {Function}
@@ -214,7 +232,6 @@ module.exports = new (function TrayIcon() {
      * @private
      */
     const _quitApp = function _quitApp(menuItem, browserWindow, event) {
-Log.info(__HERE__, Electron.remote);
         $IF.quit();
         return true;
     };
@@ -227,11 +244,9 @@ Log.info(__HERE__, Electron.remote);
      * @public
      */
     self.quit = function quit() {
-Log.info(__HERE__);
         instance && instance.destroy && instance.destroy();
         idInterval > 0 && clearInterval(idInterval);
         instance = null;
-Log.info(__HERE__);
         Electron.globalShortcut.unregisterAll();
         return true;
     };
