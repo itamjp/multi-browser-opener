@@ -120,6 +120,7 @@ module.exports = new (function TrayIcon() {
         });
         instance.setContextMenu(Electron.Menu.buildFromTemplate(menu));
         // Electron.globalShortcut.register('Shift+CmdOrCtrl+Q', _quitApp);
+        instance.on('click',        _showWindows);
         instance.on('double-click', _showWindows);
 //             MemoryUsage.init('main');
 //             idInterval = setInterval(_updateToolTip, TOOLTIP_INTERVAL);
