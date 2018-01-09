@@ -15,19 +15,19 @@
 			<h3 id="header" class="pull-left"></h3>
 			<ul id="header-icons-left" class="pull-left">
 				<li class="pull-left">
-					<div class="btn-group">
-						<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
+					<div class="btn-group hide">
+						<button class="btn btn-default btn-sm" id="button-menu"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
 					</div>
 					<div class="btn-group">
-						<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> インポート</button>
-						<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> エクスポート</button>
+						<button class="btn btn-default btn-sm" id="button-import" disabled><span class="glyphicon glyphicon-import" aria-hidden="true"></span> インポート</button>
+						<button class="btn btn-default btn-sm" id="button-export" disabled><span class="glyphicon glyphicon-export" aria-hidden="true"></span> エクスポート</button>
 						<button class="btn btn-default btn-sm" id="button-reload"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> 最新情報に更新</button>
 					</div>
 				</li>
 				<li class="pull-right">
 					<div class="btn-group">
-						<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> メニューウィンドウを開く ...</button>
-						<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> このアプリについて ...</button>
+						<button class="btn btn-default btn-sm" id="button-open-menu"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> メニューウィンドウを開く ...</button>
+						<button class="btn btn-default btn-sm" id="button-open-about"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> このアプリについて ...</button>
 					</div>
 				</li>
 			</ul>
@@ -40,11 +40,17 @@
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 設定一覧
 						<div class="pull-right" style="padding-top: 0;">
 							<div class="btn-group">
-								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+								<button class="btn btn-default btn-xs" id="account-new" title="新しくアカウントを追加する">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</button>
 							</div>
 							<div class="btn-group">
-								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>
-								<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+								<button class="btn btn-default btn-xs" id="account-moveup" title="表示中のアカウントの順番を上に移動する">
+									<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+								</button>
+								<button class="btn btn-default btn-xs" id="account-movedown" title="表示中のアカウントの順番を下に移動する">
+									<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+								</button>
 							</div>
 						</div>
 					</h4>
@@ -58,7 +64,7 @@
 							<div class="account-icon-bg">
 								<span class="icon"><img class="account-icon" width="16" height="16" src="./img/spinner.gif"></span>
 							</div>
-							<div class="account-svcname-bg">
+							<div class="account-svcname-bg small">
 								<span class="account-svcname">account-svcname</span>
 							</div>
 							<div class="account-svcicon-bg">
@@ -77,9 +83,9 @@
 							<small class="text-danger blink hide" id="editing"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 編集中</small>
 						</div>
 						<div class="pull-right" style="padding-top: 0;">
-							<button class="btn btn-default btn-xs" id="save" disabled><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存</button>
-							<button class="btn btn-default btn-xs" id="download" ><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> ダウンロード</button>
-							<button class="btn btn-danger btn-xs" id="remove"  disabled><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> この設定を削除</button>
+							<button class="btn btn-default btn-xs" id="button-save" disabled><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存</button>
+							<button class="btn btn-default btn-xs hide" id="button-download" ><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> ダウンロード</button>
+							<button class="btn btn-danger btn-xs" id="button-remove"  disabled><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> この設定を削除</button>
 						</div>
 					</h4>
 					<div class="article detail-content">
@@ -231,27 +237,29 @@
 
 						</form>
 
-						<form action="javascript:void(0);" class="form-horizontal content-register">
-
+						<form action="javascript:void(0);" class="form-horizontal content-register" data-toggle="validator" role="form">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									アカウント情報
 								</div>
 								<div class="panel-body">
 									<div class="form-group has-feedback">
-										<label for="account-key" class="col-xs-3 col-md-2 control-label">識別子</label>
+										<label for="account-key" class="col-xs-3 col-md-2 control-label">識別子：</label>
 										<div class="col-xs-9 col-md-10">
-											<input type="text" class="form-control" id="account-key" aria-describedby="keyStatus" require placeholder="メールアドレスやサービスのアカウントを推奨" value="">
+											<input type="text" class="form-control" id="account-key" aria-describedby="keyStatus" placeholder="メールアドレスやサービスのアカウント名" value="" required maxlength="32" pattern="^[A-Za-z0-9_\-\.@%\+]+$" data-pattern-error="使用可能な文字だけを指定してください。">
 											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 											<span id="keyStatus" class="sr-only"></span>
+											<div class="help-block with-errors small"></div>
+											<div class="small text-muted">使用可能文字 → 英字，数字，"@"，"."，"_"，"-"，"+"，"%" [すべて半角]</div>
 										</div>
 									</div>
 									<div class="form-group has-feedback">
 										<label for="account-name" class="col-xs-3 col-md-2 control-label">アカウント名</label>
 										<div class="col-xs-9 col-md-10">
-											<input type="text" class="form-control" id="account-name" aria-describedby="nameStatus" require placeholder="分かりやすい名前" value="">
-											<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+											<input type="text" class="form-control" id="account-name" aria-describedby="nameStatus" placeholder="分かりやすい名前" value="" required >
+											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 											<span id="nameStatus" class="sr-only"></span>
+											<div class="help-block with-errors small"></div>
 										</div>
 									</div>
 									<div class="form-group">
@@ -281,19 +289,25 @@
 		RegExp.escape = function escape(str) {
 			return (''+(str||'')).replace(new RegExp('[\\x21\\x24\\x28\\x29\\x2a\\x2b\\x2d\\x2e\\x2f\\x3a\\x3c\\x3d\\x3e\\x3f\\x5b\\x5c\\x5d\\x5e\\x7b\\x7c\\x7d]', 'g'), '\\$&');
 		};
+		const oState   = {
+			value: 'show',
+		};
 
 		// アカウントの選択
-		const selectAccount = function selectAccount(evt){
+		const selectAccount = function selectAccount(evt) {
 			const $this     = $(this);
+			let   ret       = checkStatusEditing('設定を編集中ですが、編集内容を破棄してアカウントを切り替えますか？', 'アカウントの選択', 'アカウントの選択を中止しました。');
+			if ( ret === true ) {
+				return true;
+			}
+
 			const key       = $this.data('account-key');
 			const account   = data[key] || {};
 			$('#account-list > *').removeClass('active');
 			$this.addClass('active');
 			Log.info(account);
 			$('.content-register').addClass('hide');
-			$('.content-edit').removeClass('hide');
-			$('.content-register').removeClass('hide');
-			$('.content-edit').addClass('hide');
+			$('.content-edit'    ).removeClass('hide');
 
 			// ボタンの状態を変更
 			setStateShow();
@@ -338,24 +352,81 @@
 			$('#account-style')      .val (account.style || '');
 		};
 
+		// 編集中チェック
+		const checkStatusEditing = function checkStatusEditing(message, title, cancelling){
+			if ( oState.value === 'editing' || oState.value === 'register' ) {
+				let ret       = confirm(message || '設定を編集中ですが、処理を続行しますか？', title || __METHOD__, 'warning');
+				if ( ret !== true ) {
+					cancelling  =
+					alert(cancelling || '中止しました。', title || __METHOD__, 'info');
+					return true;
+				}
+			}
+			return false;
+		};
+
+		// アラート系
+		const warning = function warning(message, title) {
+			return alert(message, title, 'warning');
+		};
+		const error = function error(message, title) {
+			return alert(message, title, 'error');
+		};
+
 		// ボタンの状態変更
 		const setStateRegister = function setStateRegister(){
-			$('#editing' ).removeClass('hide');
-			$('#save'    ).prop('disabled', false);
-			$('#download').prop('disabled', true );
-			$('#remove'  ).prop('disabled', true );
+			oState.value = 'register';
+			$('#editing'         ).removeClass('hide');
+			$('#button-save'     ).prop('disabled', true );
+			$('#button-download' ).prop('disabled', true );
+			$('#button-remove'   ).prop('disabled', true );
+			$('#account-new'     ).prop('disabled', true );
+			$('#account-moveup'  ).prop('disabled', true );
+			$('#account-movedown').prop('disabled', true );
 		};
 		const setStateShow = function setStateShow(){
-			$('#editing' ).addClass('hide');
-			$('#save'    ).prop('disabled', true );
-			$('#download').prop('disabled', false);
-			$('#remove'  ).prop('disabled', false);
+			oState.value = 'show';
+			$('#editing'         ).addClass('hide');
+			$('#button-save'     ).prop('disabled', true );
+			$('#button-download' ).prop('disabled', false);
+			$('#button-remove'   ).prop('disabled', false);
+			$('#account-new'     ).prop('disabled', false);
+			$('#account-moveup'  ).prop('disabled', false);
+			$('#account-movedown').prop('disabled', false);
 		};
 		const setStateEditing = function setStateEditing(){
-			$('#editing' ).removeClass('hide');
-			$('#save'    ).prop('disabled', false);
-			$('#download').prop('disabled', true );
-			$('#remove'  ).prop('disabled', true);
+			oState.value = 'editing';
+			$('#editing'         ).removeClass('hide');
+			$('#button-save'     ).prop('disabled', false);
+			$('#button-download' ).prop('disabled', true );
+			$('#button-remove'   ).prop('disabled', true );
+			$('#account-new'     ).prop('disabled', true );
+			$('#account-moveup'  ).prop('disabled', true );
+			$('#account-movedown').prop('disabled', true );
+		};
+		const newAccount = function newAccount(){
+			let ret = checkStatusEditing('設定を編集中ですが、編集内容を破棄してアカウントの追加を始めますか？', 'アカウントの追加', 'アカウントの追加を中止しました。');
+			if ( ret === true ) {
+				return true;
+			}
+			setStateRegister();
+			$('.content-register').removeClass('hide');
+			$('.content-edit'    ).addClass   ('hide');
+			$('#account-list > *').removeClass('active');
+		};
+		const moveUpAccount = function moveUpAccount(){
+			let ret = checkStatusEditing('設定を編集中ですが、編集内容を破棄してアカウントの順番を上に移動しますか？', 'アカウントの移動（↑）', 'アカウントの移動（↑）を中止しました。');
+			if ( ret === true ) {
+				return true;
+			}
+			warning('Not implement. @todo ★', 'account-moveup');
+		};
+		const moveDownAccount = function moveDownAccount(){
+			let ret = checkStatusEditing('設定を編集中ですが、編集内容を破棄してアカウントの順番を下に移動しますか？', 'アカウントの移動（↓）', 'アカウントの移動（↓）を中止しました。');
+			if ( ret === true ) {
+				return true;
+			}
+			warning('Not implement. @todo ★', 'account-movedown');
 		};
 
 		// onready
@@ -393,9 +464,38 @@ console.log(each);
 			});
 
 			// ボタンにイベントハンドラを付けていく
+			$('#button-menu').on('click', function(){
+				warning('Not implement. @todo ★', 'button-menu');
+			});
+			$('#button-import').on('click', function(){
+				warning('Not implement. @todo ★', 'button-import');
+			});
+			$('#button-export').on('click', function(){
+				warning('Not implement. @todo ★', 'button-export');
+			});
 			$('#button-reload').on('click', function(){
+				let ret = checkStatusEditing('設定を編集中ですが、画面をリロードしますか？', 'リロード', '中止しました。');
+				if ( ret === true ) {
+					return true;
+				}
 				location.reload();
 			});
+			$('#button-open-menu').on('click', function(){
+				$IF.getMain('./libs/MenuWindow.js').show();
+			});
+			$('#button-open-about').on('click', function(){
+				$IF.getMain('./libs/AboutWindow.js').show();
+			});
+			$('#button-save').on('click', function(){
+				warning('Not implement. @todo ★', 'button-save');
+			});
+			$('#button-download').on('click', function(){
+				warning('Not implement. @todo ★', 'button-download');
+			});
+			$('#button-remove').on('click', function(){
+				warning('Not implement. @todo ★', 'button-remove');
+			});
+
 			$('#account-list > *').on('click', selectAccount);
 			$('.openExternal').on('click', function openExternal(event){
 				const evt     = event.originalEvent || event || { preventDefault: function(){} };
@@ -406,6 +506,9 @@ console.log(each);
 				Electron.remote.shell.openExternal(url);
 				return true;
 			});
+			$('#account-new'     ).on('click', newAccount);
+			$('#account-moveup'  ).on('click', moveUpAccount);
+			$('#account-movedown').on('click', moveDownAccount);
 		});
 	</script>
 <!--
@@ -433,5 +536,6 @@ console.log(each);
     },
 -->
 	<script type="text/javascript" src="./js/bootstrap-honoka.min.js"></script>
+	<script type="text/javascript" src="./js/validator.min.js"></script>
 </body>
 </html>

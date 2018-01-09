@@ -107,6 +107,11 @@ module.exports = new (function TrayIcon() {
             click:          _showMenuWindow,
         });
         menu.push({
+            icon:           ICONS.PROPERTY,
+            label:          '設定を開く ...',
+            click:          _configure,
+        });
+        menu.push({
             icon:           ICONS.ABOUT,
             label:          'このアプリについて ...',
             click:          _showAboutWindow,
@@ -173,6 +178,30 @@ module.exports = new (function TrayIcon() {
      */
     const _showMenuWindow = function _showMenuWindow(menuItem, browserWindow, event) {
         $IF.get('./libs/MenuWindow.js').show();
+        return true;
+    };
+
+    /**
+     * 設定する
+     *
+     * @method
+     * @param   {MenuItem}          menuItem
+     * @param   {BrowserWindow}     browserWindow
+     * @param   {EventEmitter}      event
+     * @return  {Boolean}           true
+     * @private
+     */
+    const _configure = function _configure(menuItem, browserWindow, event) {
+        const data   = Config.getAccounts(true);
+        let   name   = '';
+        for ( let key in data ) {
+            if ( data[key].valid === true ) {
+                // 最初の名前を使用
+                name = data[key].name;
+                break;
+            }
+        }
+        $IF.get('./libs/ConfigureWindow.js').show(name);
         return true;
     };
 

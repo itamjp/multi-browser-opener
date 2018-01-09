@@ -139,12 +139,12 @@ html, body {
 	overflow-y:           auto;
 	margin:               0px;
 	font-size:            12px;
-	line-height:          22px;
+	line-height:          23px;
 }
 .body-configure .account-list > li {
 	position:             relative;
 	width:                auto;
-	height:               44px;
+	height:               43px;
 	overflow:             visible;
 	cursor:               pointer;
 	background-color:     #ffffff;
@@ -154,7 +154,7 @@ html, body {
 	position:             absolute;
 	width:                auto;
 	left:                 0px;
-	right:                24px;
+	right:                26px;
 	height:               22px;
 	top:                  0px;
 	bottom:               auto;
@@ -166,11 +166,11 @@ html, body {
 .body-configure .account-list > li .account-icon-bg {
 	display:              block;
 	position:             absolute;
-	width:                16px;
+	width:                18px;
 	left:                 auto;
 	right:                4px;
 	height:               22px;
-	top:                  1px;
+	top:                  -1px;
 	bottom:               auto;
 	overflow:             hidden;
 }
@@ -179,7 +179,7 @@ html, body {
 	position:             absolute;
 	width:                auto;
 	left:                 0px;
-	right:                24px;
+	right:                26px;
 	height:               22px;
 	top:                  auto;
 	bottom:               0px;
@@ -187,14 +187,15 @@ html, body {
 	text-overflow:        ellipsis;
 	white-space:          nowrap;
 	text-align:           right;
+	color:                #0000ff;
 }
 .body-configure .account-list > li .account-svcicon-bg {
 	display:              block;
 	position:             absolute;
-	width:                16px;
+	width:                18px;
 	left:                 auto;
 	right:                4px;
-	height:               22px;
+	height:               24px;
 	top:                  auto;
 	bottom:               0px;
 	overflow:             hidden;
@@ -221,7 +222,9 @@ html, body {
 .body-configure .account-list > li.active:before { background-color: #ffffc0; }
 .body-configure .account-list > li:hover:before  { background-color: #c0ffc0; }
 .body-configure .account-list > li img {
-	vertical-align: text-top;
+	vertical-align:       text-top;
+	box-sizing:           content-box;
+	border:               1px solid #d0d0d0;
 }
 .body-configure .account-list > li:after {
 	content:              "";

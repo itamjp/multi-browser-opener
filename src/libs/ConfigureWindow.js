@@ -77,8 +77,8 @@ module.exports = new (function ConfigureWindow() {
             });
             Window.on('close', self.close);
             Window.setMenu(null);
+            Window.loadURL(Path.resolve(__BASE__ + '/configure.html') + '?' + encodeURIComponent(name||''));
         }
-        Window.loadURL(Path.resolve(__BASE__ + '/configure.html') + '?' + encodeURIComponent(name||''));
 //         if ( isDevToolsOpened === true ) {
             Window.openDevTools();
 //         }
