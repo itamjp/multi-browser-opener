@@ -69,6 +69,11 @@ module.exports = new (function MainController() {
      * @private
      */
     const _execute = function _execute() {
+        // アプリの登録
+        let appId = ((__PACKAGE__||{}).build||{}).appId || 'jp.ifollow.app.dev.electron';
+        Log.info('appId:', appId);
+        App.setAppUserModelId(appId);
+        Electron.ipcMain.on('notification-shim', _handleNofitication);
         // メニューウィンドウの生成
         const MenuWindow = $IF.get('./libs/MenuWindow.js');
         MenuWindow.create();
@@ -94,6 +99,108 @@ module.exports = new (function MainController() {
 //
         // トレイアイコンを取得
         $IF.get('./libs/TrayIcon.js');
+        return true;
+    };
+
+    // -------------------------------------------------------------------------
+    /**
+     * 通知イベントのハンドラ
+     *
+     * @method
+     * @param   {EventEmitter}  e
+     * @param   {Object}        oMessage
+     * @return  {Boolean}       true
+     * @private
+     */
+    const _handleNofitication = function _handleNofitication(e, oMessage) {
+        Log.info(JSON.stringify(oMessage));
+        // Sample:
+        // {
+        //   "title":"test",
+        //   "options":  {
+        //     "body":"10:20 ～ 10:50",
+        //     "icon":"https://calendar.google.com/googlecalendar/images/logo_1X/logo_calendar_26_color_48dp.png",
+        //     "requireInteraction":true,
+        //     "tag":"cal-evt-N3RrZmEwNDFtMmM3NTB2Y3ZtcWFsYXZzMXAgaG9qb0BpZm9sbG93LmNvLmpw"
+        //   }
+        // }
+        if ( !Electron.Notification.isSupported || Electron.Notification.isSupported() !== true ) {
+            // 通知は非サポート
+            Log.info('Notification is not supported.');
+            return false;
+        }
+        const oParams    = {
+            title: oMessage.title,
+        };
+        if ( 'body' in oMessage.options ) {
+            oParams.body   = oMessage.options.body;
+        }
+        if ( 'icon' in oMessage.options ) {
+            oParams.icon   = oMessage.options.icon;
+        }
+        let notification   = new Electron.Notification(oParams);
+        notification.on('click', _handleClickNotification.bind(this, notification, e.sender.id, oParams));
+        notification.on('show',  _handleShowNotification.bind(this, notification, e.sender.id, oParams));
+        notification.show();
+        return true;
+    };
+
+    /**
+     * 通知を表示したイベントのハンドラ
+     *
+     * @method
+     * @param   {Notification}  notification
+     * @param   {Number}        webview
+     * @param   {Object}        oParam
+     * @param   {EventEmitter}  e
+     * @return  {Boolean}       true
+     * @private
+     */
+    const _handleShowNotification = function _handleShowNotification(notification, webview, oParams, e) {
+        Log.info({
+            webview: webview,
+            oParams: oParams,
+            e: e,
+        });
+        setTimeout(_closeNotificationDelayed.bind(this, notification, webview, oParams), 2000);
+        return true;
+    };
+
+    /**
+     * 通知を遅延させて閉じる
+     *
+     * @method
+     * @param   {Notification}  notification
+     * @param   {Number}        webview
+     * @param   {Object}        oParam
+     * @param   {EventEmitter}  e
+     * @return  {Boolean}       true
+     * @private
+     */
+    const _closeNotificationDelayed = function _closeNotificationDelayed(notification, webview, oParams, e) {
+        Log.info(__FUNCTION__ + '::' + __LINE__);
+        // notification.close();
+        return true;
+    };
+
+    /**
+     * 通知をクリックしたイベントのハンドラ
+     *
+     * @method
+     * @param   {Notification}  notification
+     * @param   {Number}        webview
+     * @param   {Object}        oParam
+     * @param   {EventEmitter}  e
+     * @return  {Boolean}       true
+     * @private
+     */
+    const _handleClickNotification = function _handleClickNotification(webview, oParams, e) {
+        Log.info({
+            webview: webview,
+            oParams: oParams,
+            e: e,
+        });
+        notification.close();
         return true;
     };
 

@@ -2,10 +2,6 @@
   "name": "multi-browser-opener",
   "version": "0.1.0",
   "description": "multiple browser opener",
-  "main": "index.js",
-  "scripts": {
-    "start": "electron ./src"
-  },
   "keywords": [],
   "author": "Masaki Hojo <info@ifollow.co.jp>",
   "license": "MIT",
@@ -13,12 +9,31 @@
     "type": "git",
     "url": "git://github.com/itamjp/multi-browser-opener.git"
   },
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./src"
+  },
+  "build": {
+    "appId": "jp.ifollow.app.multi-browser-opener.electron",
+    "directories": {
+      "app": "src"
+    },
+    "artifactName": "${productName}_installer.${ext}",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
   "devDependencies": {
     "npm-run-all": "^1.2.0"
   },
   "dependencies": {
     "electron-about-window": "^1.6.1",
-    "electron-in-page-search": "^1.2.3"
+    "electron-in-page-search": "^1.2.3",
+    "electron-notification-shim": "^1.1.0"
   },
   "preferGlobal": true
 }

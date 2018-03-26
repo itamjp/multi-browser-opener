@@ -228,6 +228,19 @@ module.exports = new (function $IF() {
                 configurable:   true,
             });
         }
+        // package.json
+        let oPackageInfo = {};
+        try {
+            oPackageInfo = JSON.parse(FS.readFileSync(Path.resolve(__BASE__ + SEP + '..' + SEP + 'package.json'), { encoding: 'UTF-8', flag: 'r' }));
+        } catch (e) {
+            oPackageInfo = {};
+        }
+        Object.defineProperty(global, '__PACKAGE__', {
+            value:          oPackageInfo,
+            writable:       false,
+            enumerable:     true,
+            configurable:   true,
+        });
         return true;
     };
 
